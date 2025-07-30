@@ -1,0 +1,61 @@
+#include <DHT.h>
+
+// Define sensor type and pin
+#define DHT_PIN 19     // Pin where the DHT sensor is connected
+#define DHT_TYPE DHT11 
+
+#define FAN_PIN 5      // Pin where the relay is connected to control the fan
+
+// Define the threshold values for temperature and humidity
+#define TEMP_THRESHOLD 23    // Temperature threshold in Celsius (e.g., 30°C)
+#define HUM_THRESHOLD 60     // Humidity threshold in percentage (e.g., 60%)
+
+DHT dht(DHT_PIN, DHT_TYPE); // Initialize the DHT sensor
+
+void setup() {
+  // Start serial communication
+  Serial.begin(115200);
+  
+  // Initialize the DHT sensor
+  dht.begin();
+  
+  // Set FAN_PIN as output
+  pinMode(FAN_PIN, OUTPUT);
+  
+  // Initially turn off the fan
+  digitalWrite(FAN_PIN, LOW);
+}
+
+void loop() {
+  // Wait for sensor to get a new reading
+  delay(2000); // Wait 2 seconds before reading the sensor again
+  
+  // Get temperature and humidity readings
+  float temperature = dht.readTemperature(); // Get temperature in Celsius
+  float humidity = dht.readHumidity();      // Get humidity in percentage
+  
+  // Check if the readings are valid
+  if (isnan(temperature) || isnan(humidity)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+  // Print the readings to the serial monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.print("°C  ");
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println("%");
+
+  // Check if temperature or humidity exceeds thresholds
+  if (temperature >= TEMP_THRESHOLD && humidity >= HUM_THRESHOLD) {
+    // Turn on the fan if the threshold is reached
+    digitalWrite(FAN_PIN, HIGH);
+    Serial.println("Fan turned ON");
+  } else {
+    // Turn off the fan if conditions are normal
+    digitalWrite(FAN_PIN, LOW);
+    Serial.println("Fan turned OFF");
+  }
+}

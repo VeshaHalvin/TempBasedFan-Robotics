@@ -1,0 +1,62 @@
+<xml version="Mixly 2.0 rc2" board="Arduino ESP32C3@ESP32C3 Dev Module"><block type="inout_digital_write2" id="2(orTFndG~fR])T9C@nd" x="-277" y="-241"><value name="PIN"><shadow type="pins_digitalWrite" id="T(]GQLjRZI}-@hlRAwDb"><field name="PIN">18</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="6:t?`+5.U(+Ho-Bb5TVN"><field name="BOOL">HIGH</field></shadow></value><next><block type="controls_delay" id="k!J2Gcve(gpvCT4xtoz9"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="SHn}eB.vSRzbB!4zvQR8"><field name="NUM">2000</field></shadow></value><next><block type="inout_digital_write2" id="@z#/`PJ[T5Xlzw)UcJs`"><value name="PIN"><shadow type="pins_digitalWrite" id="/8B.=(.}9,x!~=UcnMZ9"><field name="PIN">18</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="T!EC)[;b3Hpr]yElIzd`"><field name="BOOL">LOW</field></shadow></value><next><block type="controls_delay" id="T9v)kOA}|SxhBB{h{MFJ"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="3FZLCr0H4x7MO0.pRXmk"><field name="NUM">2000</field></shadow></value><next><block type="inout_digital_write2" id="A~q3zc?9{5E}hp6?$cE-"><value name="PIN"><shadow type="pins_digitalWrite" id="_7j{?VLk[VVR*N,k(JLB"><field name="PIN">5</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="2P)vt7PcXdvFugpMS-36"><field name="BOOL">HIGH</field></shadow></value><next><block type="controls_delay" id="Z![uKp;,-Ntg8^/++p9E"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="meVm7d[?yLc.|gyOufhl"><field name="NUM">500</field></shadow></value><next><block type="inout_digital_write2" id="w=*F7!.A^v/`8A^6KFAZ"><value name="PIN"><shadow type="pins_digitalWrite" id="*_y[BPFM~4:-Th9V.yx0"><field name="PIN">5</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="az=PGYD|L7qVlFIme{*U"><field name="BOOL">LOW</field></shadow></value><next><block type="controls_delay" id="t}[O*8~[DZqXX0qCh}1J"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="2J^kpC]FPH4xcA27;M/]"><field name="NUM">500</field></shadow></value><next><block type="inout_digital_write2" id="@Q(D:FZGKkt`~nW,/UD)"><value name="PIN"><shadow type="pins_digitalWrite" id="nWcFk3si+~KAZi~zi:xh"><field name="PIN">5</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="WJ]y3),|2TF,2,.UR4T,"><field name="BOOL">HIGH</field></shadow></value><next><block type="controls_delay" id="s--{o3e?lgeFQ,*GQ.#E"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="3YLoO~@B4gRK`]Y!NUzh"><field name="NUM">500</field></shadow></value><next><block type="inout_digital_write2" id="W9(-2/mYx#Ld@XPwHLy:"><value name="PIN"><shadow type="pins_digitalWrite" id=",wkoc-c/rq_[=9]C$pfN"><field name="PIN">5</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="g7}],Z.IOLZjx|7L9Q~d"><field name="BOOL">LOW</field></shadow></value><next><block type="controls_delay" id="Ox-6E^`zPm`b(|N+0|?c"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="F2)8=8}z[h9EC$3=?kHW"><field name="NUM">500</field></shadow></value><next><block type="inout_digital_write2" id="#*QmAtst#gv1gvH*e^!R"><value name="PIN"><shadow type="pins_digitalWrite" id="yB222(MxAP:tD{{kzE^L"><field name="PIN">7</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="tv$O=U^!~ia5}nWQ{`/^"><field name="BOOL">HIGH</field></shadow></value><next><block type="controls_delay" id="Mg5sJ|lPM!#or?wGn4ms"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="*wlGlXiUg)l8BFU)uFBj"><field name="NUM">2000</field></shadow></value><next><block type="inout_digital_write2" id=";TwD1ao*m*p{-~Um5^Rt"><value name="PIN"><shadow type="pins_digitalWrite" id="S`CRVOK,27`VWsYz4z.v"><field name="PIN">7</field></shadow></value><value name="STAT"><shadow type="inout_highlow" id="0.qK~-5(aX5]SX@?gAk@"><field name="BOOL">LOW</field></shadow></value><next><block type="controls_delay" id="]jRtifV~/=5K^JU~IS9n"><field name="UNIT">delay</field><value name="DELAY_TIME"><shadow type="math_number" id="}YpFXF/58SYz.|TgT$.;"><field name="NUM">2000</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml><config>{"CDCOnBoot":"default","PartitionScheme":"default","CPUFreq":"160","FlashMode":"qio","FlashFreq":"80","FlashSize":"4M","UploadSpeed":"921600"}</config><code>#include &lt;DHT.h&gt;
+
+// Define sensor type and pin
+#define DHT_PIN 19     // Pin where the DHT sensor is connected
+#define DHT_TYPE DHT11 
+
+#define FAN_PIN 5      // Pin where the relay is connected to control the fan
+
+// Define the threshold values for temperature and humidity
+#define TEMP_THRESHOLD 23    // Temperature threshold in Celsius (e.g., 30°C)
+#define HUM_THRESHOLD 60     // Humidity threshold in percentage (e.g., 60%)
+
+DHT dht(DHT_PIN, DHT_TYPE); // Initialize the DHT sensor
+
+void setup() {
+  // Start serial communication
+  Serial.begin(115200);
+  
+  // Initialize the DHT sensor
+  dht.begin();
+  
+  // Set FAN_PIN as output
+  pinMode(FAN_PIN, OUTPUT);
+  
+  // Initially turn off the fan
+  digitalWrite(FAN_PIN, LOW);
+}
+
+void loop() {
+  // Wait for sensor to get a new reading
+  delay(2000); // Wait 2 seconds before reading the sensor again
+  
+  // Get temperature and humidity readings
+  float temperature = dht.readTemperature(); // Get temperature in Celsius
+  float humidity = dht.readHumidity();      // Get humidity in percentage
+  
+  // Check if the readings are valid
+  if (isnan(temperature) || isnan(humidity)) {
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+  // Print the readings to the serial monitor
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.print("°C  ");
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.println("%");
+
+  // Check if temperature or humidity exceeds thresholds
+  if (temperature &gt;= TEMP_THRESHOLD &amp;&amp; humidity &gt;= HUM_THRESHOLD) {
+    // Turn on the fan if the threshold is reached
+    digitalWrite(FAN_PIN, HIGH);
+    Serial.println("Fan turned ON");
+  } else {
+    // Turn off the fan if conditions are normal
+    digitalWrite(FAN_PIN, LOW);
+    Serial.println("Fan turned OFF");
+  }
+}
+</code>
